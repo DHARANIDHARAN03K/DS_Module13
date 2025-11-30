@@ -1,26 +1,22 @@
 Ex2 Conversion of the infix expression into postfix expression
 DATE: 06-09-2025
-AIM:
+Developed by: DHARANI DHARAN K
+RegisterNumber: 212223040036
 
+AIM:
 To write a Java program to convert the infix expression into postfix form using stack by following the operator precedence and associative rule.
 
 Algorithm
-
 Start the program.
-
 Initialize a stack and set the top index to -1.
-
 Define the push() and pop() functions to add and remove elements from the stack.
-
 Define the priority() function to assign priorities to operators.
-
 Traverse the expression in the IntoPost() function, handling operands, parentheses, and operators.
-
 After processing the expression, pop and print any remaining operators from the stack.
-
 End.
 
 Program:
+
 /*
 Program to convert the infix expression into postfix expression
 Developed by: Dharani dharan K
@@ -99,12 +95,9 @@ public class InfixToPostfix {
     }
 }
 
+
 Output:
-
-(Example output similar to C program's postfix result)
-
-3 2 % 4 A B & * + 
+<img width="421" height="141" alt="image" src="https://github.com/user-attachments/assets/0ae6f929-4110-4654-a2ec-afd1c7638a3b" />
 
 Result:
-
 Thus, the Java program to convert the infix expression into postfix form using stack by following the operator precedence and associative rule is implemented successfully.
