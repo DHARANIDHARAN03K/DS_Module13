@@ -1,24 +1,24 @@
-EX 1 Display operator precedence in the infix expression.
-DATE: 06-09-2025
-AIM:
-To write a C program to find and display the priority of the operator in the given Postfix expression
+# EX 1 Display operator precedence in the infix expression.
+## DATE: 06-09-2025
+## AIM:
+To write a Java program to find and display the priority of the operator in the given Postfix expression
 
-Algorithm
-Start the program. 
+## Algorithm
+Start the program.
 
-Define the priority() function to return the priority of operators. 
+Define the priority() function to return the priority of operators.
 
-Initialize the string containing operators and operands. 
+Initialize the string containing operators and operands.
 
-Loop through each character in the string. 
+Loop through each character in the string.
 
-For each operator, call the priority() function to determine its priority. 
+For each operator, call the priority() function to determine its priority.
 
-Print the operator and its corresponding priority level. 
+Print the operator and its corresponding priority level.
 
 End.
 
-Program:
+## Program:
 Java
 
 /*
@@ -51,13 +51,13 @@ public class OperatorPrecedence {
         for (int i = 0; i < expression.length(); i++) {
             char ch = expression.charAt(i);
 
-            // 5. Check if the character is an operator (similar to C's direct checks)
+            // 5. Check if the character is an operator
             if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || 
                 ch == '%' || ch == '^' || ch == '&' || ch == '|') {
                 
                 int p = priority(ch); // Call the priority() function
 
-                // 6. Print the operator and its corresponding priority level (using switch logic)
+                // 6. Print the operator and its corresponding priority level
                 System.out.print(ch + " ---- > ");
                 switch (p) {
                     case 1:
@@ -73,17 +73,16 @@ public class OperatorPrecedence {
                         System.out.println("Highest Priority");
                         break;
                     default:
-                        // Should not be reached for the operators checked above
                         System.out.println("Unknown Priority");
                         break;
                 }
             }
         }
-        // 7. End (implicitly handled by main method completion)
     }
 }
-Output:
+
+## Output:
 ![image](https://github.com/user-attachments/assets/a810844b-7ebc-4079-952f-80e4d2850f93)
 
-Result:
-Thus the C program to find and display the priority of the operator in the given Postfix expression is implemented successfully
+## Result:
+Thus the Java program to find and display the priority of the operator in the given Postfix expression is implemented successfully.
