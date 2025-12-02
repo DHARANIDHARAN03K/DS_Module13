@@ -1,88 +1,57 @@
-# EX 1 Display operator precedence in the infix expression.
-## DATE: 06-09-2025
+## EX3 Implementation of Tower of Hanoi
 ## AIM:
-To write a Java program to find and display the priority of the operator in the given Postfix expression
+To write a Java program to implement the Tower of Hanoi using recursion.
 
-## Algorithm
+## Algorithm:
+```
 Start the program.
-
-Define the priority() function to return the priority of operators.
-
-Initialize the string containing operators and operands.
-
-Loop through each character in the string.
-
-For each operator, call the priority() function to determine its priority.
-
-Print the operator and its corresponding priority level.
-
-End.
+Read the number of disks.
+Define a recursive function toh(n, source, destination, auxiliary)
+If n == 1, print the move and return.
+Recursively move n-1 disks from source → auxiliary using destination.
+Move the nth disk from source → destination.
+Recursively move n-1 disks from auxiliary → destination using source.
+Call the recursive function.
+End the program.
+```
 
 ## Program:
-Java
-
-/*
-Program to find and display the priority of the operator in the given Postfix expression
+```
+Program to implement Tower of Hanoi
 Developed by: Dharani dharan K
 RegisterNumber: 212223040036
-*/
+
+
 import java.util.Scanner;
 
-public class OperatorPrecedence {
+public class TowerOfHanoi {
 
-    // 2. Define the priority() function to return the priority of operators.
-    static int priority(char x) {
-        if (x == '&' || x == '|')
-            return 1;
-        if (x == '+' || x == '-')
-            return 2;
-        if (x == '*' || x == '/' || x == '%')
-            return 3;
-        if (x == '^')
-            return 4;
-        return 0; // For operands or parentheses
+    public static void toh(int n, char source, char dest, char aux) {
+        if (n == 1) {
+            System.out.println(source + " to " + dest);
+            return;
+        }
+        toh(n - 1, source, aux, dest);
+        System.out.println(source + " to " + dest);
+        toh(n - 1, aux, dest, source);
     }
 
     public static void main(String[] args) {
-        // 3. Initialize the string containing operators and operands.
-        String expression = "(A*B)^C+(D%H)/F&G";
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter number of disks: ");
+        int n = sc.nextInt();
 
-        // 4. Loop through each character in the string.
-        for (int i = 0; i < expression.length(); i++) {
-            char ch = expression.charAt(i);
+        System.out.println("The moves involved are:");
+        toh(n, 'A', 'C', 'B');  // A = source, C = destination, B = auxiliary
 
-            // 5. Check if the character is an operator
-            if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || 
-                ch == '%' || ch == '^' || ch == '&' || ch == '|') {
-                
-                int p = priority(ch); // Call the priority() function
-
-                // 6. Print the operator and its corresponding priority level
-                System.out.print(ch + " ---- > ");
-                switch (p) {
-                    case 1:
-                        System.out.println("Lowest Priority");
-                        break;
-                    case 2:
-                        System.out.println("Second Lowest Priority");
-                        break;
-                    case 3:
-                        System.out.println("Second Highest Priority");
-                        break;
-                    case 4:
-                        System.out.println("Highest Priority");
-                        break;
-                    default:
-                        System.out.println("Unknown Priority");
-                        break;
-                }
-            }
-        }
+        sc.close();
     }
 }
+```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/a810844b-7ebc-4079-952f-80e4d2850f93)
+![image](https://github.com/user-attachments/assets/43f8950e-3ddf-4b3f-9736-cbdf804d7abc)
 
 ## Result:
-Thus the Java program to find and display the priority of the operator in the given Postfix expression is implemented successfully.
+Thus, the Java program to implement the Tower of Hanoi using recursion has been successfully executed.
