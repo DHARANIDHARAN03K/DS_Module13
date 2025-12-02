@@ -1,113 +1,90 @@
-# Ex2 Conversion of the infix expression into postfix expression
-## DATE: 06-09-2025
-Developed by: DHARANI DHARAN K
-RegisterNumber: 212223040036
-
+## Ex2 Conversion of the Infix Expression into Postfix Expression
 ## AIM:
-To write a Java program to convert the infix expression into postfix form using stack by following the operator precedence and associative rule.
+To write a Java program to convert the infix expression into postfix form using a stack by following operator precedence and associativity rules.
 
-## Algorithm:
+## Algorithm
 1. Start the program.
-2. Initialize a stack (character array) and set the top index to -1.
-3. Define the push() and pop() functions to add and remove elements from the stack.
-4. Define the priority() function to assign precedence values to operators.
-5. Traverse the expression in the IntoPost() function:
-    a. If an operand is found, print it immediately.
-    b. If an opening parenthesis '(' is found, push it onto the stack.
-    c. If a closing parenthesis ')' is found, pop and print operators from the stack until an opening parenthesis '(' is encountered and discard both parentheses.
-    d. If an operator is found, pop and print operators from the stack that have greater or equal precedence than the current operator, then push the current operator onto the stack.
-6. After processing the entire expression, pop and print any remaining operators from the stack.
-7. End.
+2. Initialize a stack for operators.
+3. Define a function priority() to assign precedence values to operators.
+4. Traverse each character in the infix expression:
+   a. If it is an operand, print it.
+   b. If it is '(', push it onto the stack.
+   c. If it is ')', pop and print until '(' is encountered.
+   d. If it is an operator:
+       - Pop and print operators from stack having higher or equal priority.
+       - Push current operator onto stack.
+5. After processing the entire expression, pop and print all remaining operators.
+6. End.
 
 ## Program:
+```
 /*
 Program to convert the infix expression into postfix expression
 Developed by: Dharani dharan K
 RegisterNumber: 212223040036
 */
 
-import java.util.*;
+import java.util.Stack;
 
 public class InfixToPostfix {
 
-    static char[] stack = new char[100];
-    static int top = -1;
-
-    static void push(char x) {
-        stack[++top] = x;
+    public static int priority(char x) {
+        switch (x) {
+            case ')': return 0;
+            case '&':
+            case '|': return 1;
+            case '+':
+            case '-': return 2;
+            case '*':
+            case '/':
+            case '%': return 3;
+            case '^': return 4;
+            default: return 0;
+        }
     }
 
-    static char pop() {
-        if (top == -1)
-            return 0; // Represents an empty stack
-        else
-            return stack[top--];
-    }
+    public static void infixToPostfix(String exp) {
+        Stack<Character> stack = new Stack<>();
 
-    static int priority(char x) {
-        if (x == '(')
-            return 0;
-
-        // Logical AND/OR
-        if (x == '&' || x == '|')
-            return 1;
-
-        // Additive operators
-        if (x == '+' || x == '-')
-            return 2;
-
-        // Multiplicative operators
-        if (x == '*' || x == '/' || x == '%')
-            return 3;
-
-        // Exponentiation (Highest precedence)
-        if (x == '^')
-            return 4;
-
-        return 0;
-    }
-
-    static void IntoPost(String exp) {
-        char x;
         for (int i = 0; i < exp.length(); i++) {
-
             char ch = exp.charAt(i);
 
             if (Character.isLetterOrDigit(ch)) {
                 System.out.print(ch + " ");
             }
             else if (ch == '(') {
-                push(ch);
+                stack.push(ch);
             }
             else if (ch == ')') {
-                while ((x = pop()) != '(')
-                    System.out.print(x + " ");
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    System.out.print(stack.pop() + " ");
+                }
+                stack.pop();
             }
             else {
-                while (top != -1 && priority(stack[top]) >= priority(ch))
-                    System.out.print(pop() + " ");
-
-                push(ch);
+                while (!stack.isEmpty() && priority(stack.peek()) >= priority(ch)) {
+                    System.out.print(stack.pop() + " ");
+                }
+                stack.push(ch);
             }
         }
 
-        while (top != -1) {
-            System.out.print(pop() + " ");
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop() + " ");
         }
     }
 
     public static void main(String[] args) {
-        String exp = "3%2+4*(A&B)";
-        System.out.println("Infix Expression: " + exp);
-        System.out.print("Postfix Expression: ");
-        IntoPost(exp);
-        System.out.println();
+        String exp = "2*3%(2-1)+5|3";
+        infixToPostfix(exp);
     }
 }
+```
 
 ## Output:
- 
-[![image](https://github.com/user-attachments/assets/23cf1270-fdba-4c49-ae95-3c2c5f339d3a)]
+
+![image](https://github.com/user-attachments/assets/75926b46-584f-400b-8686-3f3534561757)
+
 
 ## Result:
-Thus, the Java program to convert the infix expression into postfix form using stack by following the operator precedence and associative rule is implemented successfully.
+Thus, the Java program to convert the infix expression into postfix form using stack and operator precedence has been successfully implemented.
