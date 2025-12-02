@@ -3,10 +3,10 @@
 ## AIM:
 To write a Java program to perform push and pop operations of the stack in the infix to postfix conversion.
 
-## Algorithm
+## Algorithm:
 1. Initialize top as -1 and declare stack as a character array.
 2. To push, increment top and assign the character to stack[top].
-3. To pop, check if top is -1 and return '\0' if true.
+3. To pop, check if top is -1 and return '\0' if true (indicating underflow).
 4. If not, return stack[top] and decrement top.
 
 ## Program:
@@ -22,30 +22,46 @@ public class StackOperations {
     static int top = -1;
 
     public static void push(char x) {
+        // Simple implementation without overflow check for brevity
         stack[++top] = x;
     }
 
     public static char pop() {
         if (top == -1)
-            return '\0';   // Represents empty stack
+            return '\0';    // Represents empty stack (Stack Underflow)
         else
             return stack[top--];
     }
 
     public static void main(String[] args) {
+        System.out.println("--- Stack Demonstration ---");
         // Sample demonstration
         push('A');
+        System.out.println("Pushed: A");
         push('B');
+        System.out.println("Pushed: B");
         push('C');
+        System.out.println("Pushed: C");
+        
+        System.out.println("---------------------------");
 
         System.out.println("Popped element: " + pop());
         System.out.println("Popped element: " + pop());
+        System.out.println("Popped element: " + pop());
+        System.out.println("Popped element (Attempting to pop from empty stack): " + (pop() == '\0' ? "Stack is empty/Underflow" : "Error")); // Test underflow
     }
 }
 
 ## Output:
-![image](https://github.com/user-attachments/assets/23cf1270-fdba-4c49-ae95-3c2c5f339d3a)
-
+--- Stack Demonstration ---
+Pushed: A
+Pushed: B
+Pushed: C
+---------------------------
+Popped element: C
+Popped element: B
+Popped element: A
+Popped element (Attempting to pop from empty stack): Stack is empty/Underflow
 
 ## Result:
 Thus the Java program to perform push and pop operations of the stack in the infix to postfix conversion is implemented successfully.
