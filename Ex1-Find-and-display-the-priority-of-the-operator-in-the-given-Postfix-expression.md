@@ -1,59 +1,52 @@
-# EX 1 Display operator precedence in the infix expression.
-## DATE: 06-09-2025
+## EX 1 Display Operator Precedence in the Postfix Expression
 ## AIM:
-To write a Java program to find and display the priority of the operator in the given Infix expression.
+To write a Java program to find and display the priority of operators in the given postfix expression.
 
-## Algorithm:
+## Algorithm
 1. Start the program.
-2. Define the priority() function to assign and return the precedence level of specific operators (e.g., ^ as 4, *, /, % as 3, +, - as 2, &, | as 1).
-3. Initialize the string containing the infix expression.
-4. Loop through each character in the expression string.
-5. Check if the current character is an operator defined in the priority levels.
-6. If it is an operator, call the priority() function to determine its precedence value.
-7. Print the operator and its corresponding descriptive priority level (e.g., Highest Priority, Lowest Priority).
-8. End.
+2. Define a function priority() that returns the precedence value of operators.
+3. Initialize the postfix expression as a string.
+4. Traverse the expression character by character.
+5. For each operator, call priority() to get its precedence.
+6. Display the operator along with its precedence level.
+7. End.
 
-## Program:
+## Program :
+```
 /*
-Program to find and display the priority of the operator in the given Infix expression
+Program to find and display the priority of the operator in the given Postfix expression
 Developed by: Dharani dharan K
 RegisterNumber: 212223040036
 */
-import java.util.Scanner;
 
-public class OperatorPrecedence {
+public class OperatorPriority {
 
-    // 2. Define the priority() function to return the priority of operators.
-    static int priority(char x) {
-        if (x == '&' || x == '|')
-            return 1; // Lowest Priority
-        if (x == '+' || x == '-')
-            return 2; // Second Lowest Priority
-        if (x == '*' || x == '/' || x == '%')
-            return 3; // Second Highest Priority
-        if (x == '^')
-            return 4; // Highest Priority
-        return 0; // For operands or parentheses
+    public static int priority(char op) {
+        switch (op) {
+            case '+':
+                return 2;
+            case '/':
+            case '*':
+                return 3;
+            case '|':
+                return 1;
+            default:
+                return -1;
+        }
     }
 
     public static void main(String[] args) {
-        // 3. Initialize the string containing operators and operands.
-        String expression = "(A*B)^C+(D%H)/F&G";
-        System.out.println("Analyzing Infix Expression: " + expression + "\n");
 
-        // 4. Loop through each character in the string.
+        String expression = "100 200 + 2 / 5 * 7|";
+
         for (int i = 0; i < expression.length(); i++) {
             char ch = expression.charAt(i);
 
-            // 5. Check if the character is an operator
-            if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || 
-                ch == '%' || ch == '^' || ch == '&' || ch == '|') {
-                
-                int p = priority(ch); // Call the priority() function
+            if (ch == '+' || ch == '/' || ch == '*' || ch == '|') {
+                int pr = priority(ch);
+                System.out.print(ch + " ----> ");
 
-                // 6. Print the operator and its corresponding priority level
-                System.out.print(ch + " ---- > ");
-                switch (p) {
+                switch (pr) {
                     case 1:
                         System.out.println("Lowest Priority");
                         break;
@@ -63,22 +56,19 @@ public class OperatorPrecedence {
                     case 3:
                         System.out.println("Second Highest Priority");
                         break;
-                    case 4:
-                        System.out.println("Highest Priority");
-                        break;
                     default:
                         System.out.println("Unknown Priority");
-                        break;
                 }
             }
         }
     }
 }
+```
 
 ## Output:
 
+![image](https://github.com/user-attachments/assets/36fea1ca-9c5a-4d6b-8909-cb4b9d90e3e5)
 
-[![image](https://github.com/user-attachments/assets/23cf1270-fdba-4c49-ae95-3c2c5f339d3a)]
 
 ## Result:
-Thus the Java program to find and display the priority of the operator in the given Infix expression is implemented successfully.
+Thus, the Java program to find and display the priority of operators in the given postfix expression is successfully implemented.
