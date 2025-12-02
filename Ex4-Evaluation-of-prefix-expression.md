@@ -1,51 +1,81 @@
-# Ex5 Stack Operations
-## DATE: 06-09-2025
-## AIM:
-To write a Java program to perform push and pop operations of the stack in the infix to postfix conversion.
+Ex4 Evaluation of Prefix Expression
+AIM
 
-## Algorithm
-Start
-Initialize an empty stack as a character array with a variable top for tracking the stack index.
-Define a push() function to add a character to the stack.
-Define a pop() function to remove and return the top character from the stack.
-In the main function, demonstrate push and pop operations.
-End
+To write a Java program to evaluate the given prefix expression using a stack and print the result.
 
-## Program:
+Algorithm
+1. Start
+2. Initialize an empty integer stack.
+3. Read the prefix expression as a string.
+4. Traverse the expression from right to left.
+5. For each character:
+      - If it is a digit, convert it to an integer and push it on the stack.
+      - If it is an operator, pop two operands from the stack,
+        perform the operation, and push the result back.
+6. After traversal, the final value on the stack is the result.
+7. Print the result.
+8. End
+
+Program:
+```
 /*
-Program to perform push and pop operations of the stack
+Program to evaluate the given prefix expression
 Developed by: Dharani dharan K
 RegisterNumber: 212223040036
 */
 
-public class StackOperations {
+import java.util.Stack;
 
-    static char[] stack = new char[100];
-    static int top = -1;
+public class PrefixEvaluation {
 
-    public static void push(char x) {
-        stack[++top] = x;
-    }
+    public static int evaluatePrefix(String expr) {
+        Stack<Integer> stack = new Stack<>();
 
-    public static char pop() {
-        if (top == -1)
-            return '\0';   // Represents empty stack
-        else
-            return stack[top--];
+        // Traverse from right to left
+        for (int i = expr.length() - 1; i >= 0; i--) {
+            char ch = expr.charAt(i);
+
+            // If digit, push to stack
+            if (Character.isDigit(ch)) {
+                stack.push(ch - '0');
+            } else {
+                // Operator: pop two operands
+                int n1 = stack.pop();
+                int n2 = stack.pop();
+                int result = 0;
+
+                switch (ch) {
+                    case '+':
+                        result = n1 + n2;
+                        break;
+                    case '-':
+                        result = n1 - n2;
+                        break;
+                    case '*':
+                        result = n1 * n2;
+                        break;
+                    case '/':
+                        result = n1 / n2;
+                        break;
+                }
+                stack.push(result);
+            }
+        }
+
+        return stack.pop();
     }
 
     public static void main(String[] args) {
-        push('A');
-        push('B');
-        push('C');
-
-        System.out.println(pop());
-        System.out.println(pop());
+        String prefix = "+9*26"; // Example prefix expression
+        int result = evaluatePrefix(prefix);
+        System.out.println("Result: " + result);
     }
 }
+```
+Output
 
-## Output:
-![image](https://github.com/user-attachments/assets/23cf1270-fdba-4c49-ae95-3c2c5f339d3a)
+![image](https://github.com/user-attachments/assets/98c230d3-2e9c-4157-ad37-40519e5219cd)
 
-## Result:
-Thus, the Java program to perform push and pop operations of the stack in the infix to postfix conversion is implemented successfully.
+Result
+
+Thus, the Java program to evaluate the prefix expression using a stack is executed successfully.
