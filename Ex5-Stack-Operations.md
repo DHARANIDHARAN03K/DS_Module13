@@ -53,15 +53,9 @@ public class StackOperations {
 }
 
 ## Output:
---- Stack Demonstration ---
-Pushed: A
-Pushed: B
-Pushed: C
----------------------------
-Popped element: C
-Popped element: B
-Popped element: A
-Popped element (Attempting to pop from empty stack): Stack is empty/Underflow
+
+
+[![image](https://github.com/user-attachments/assets/23cf1270-fdba-4c49-ae95-3c2c5f339d3a)]
 
 ## Result:
 Thus the Java program to perform push and pop operations of the stack in the infix to postfix conversion is implemented successfully.
